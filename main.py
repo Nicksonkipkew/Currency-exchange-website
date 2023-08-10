@@ -11,7 +11,7 @@ def home():
 
 @app.route('/results', methods=['GET', 'POST'])
 def currency():
-  info = []  # Declare info variable with a default value
+  info = []  # Declare info variables with a default value
   bugger = 0
     
   if request.method == 'POST':
