@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Conversion Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Currency Conversion Results</h1>
+    <p>Original Amount: {{ info[0] }}</p>
+    <p>Starting Currency: {{ info[1] }}</p>
+    <p>Converted Amount: {{ info[3] }}</p>
+    <p>Target Currency: {{ info[2] }}</p>
+    <hr>
+    <h2>Equivalent Amount in Hamburgers:</h2>
+    <p>{{ info[0] }} {{ info[1] }} is approximately {{bugger}} hamburgers in {{ info[2] }} based on The Economist Big Mac Index.</p>
+    
+    <h2>Exchange Rate History Chart:</h2>
+    <canvas id="exchangeRateChart"></canvas>
+
+    <h2>Currency Comparison Chart:</h2>
+    <canvas id="comparisonChart"></canvas>
+
+    <script>
+        // Exchange Rate History Chart
+        var exchangeRateChart = new Chart(document.getElementById('exchangeRateChart'), {
+            type: 'line',
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                datasets: [{
+                    label: 'Exchange Rate History',
+                    data: [1.2, 1.5, 1.3, 1.7, 1.6, 1.4],
+                    borderColor: 'blue',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Currency Comparison Chart
+        var comparisonChart = new Chart(document.getElementById('comparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Starting Currency", "Target Currency"],
+                datasets: [{
+                    label: 'Comparison',
+                    data: [{{ info[0] }}, {{ info[3] }}],
+                    backgroundColor: ['blue', 'green']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
